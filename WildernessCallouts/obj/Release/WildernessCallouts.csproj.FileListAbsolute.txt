@@ -1,0 +1,9 @@
+C:\Users\USER\RiderProjects\WildernessCallouts\WildernessCallouts\bin\Release\CalloutAPI.net.dll
+C:\Users\USER\RiderProjects\WildernessCallouts\WildernessCallouts\bin\Release\CitizenFX.Core.dll
+C:\Users\USER\RiderProjects\WildernessCallouts\WildernessCallouts\obj\Release\WildernessCallouts.csprojAssemblyReference.cache
+C:\Users\USER\RiderProjects\WildernessCallouts\WildernessCallouts\obj\Release\WildernessCallouts.csproj.CoreCompileInputs.cache
+C:\Users\USER\RiderProjects\WildernessCallouts\WildernessCallouts\obj\Release\WildernessCallouts.csproj.CopyComplete
+C:\Users\USER\RiderProjects\WildernessCallouts\WildernessCallouts\bin\Release\WildernessCallouts.net.dll
+C:\Users\USER\RiderProjects\WildernessCallouts\WildernessCallouts\bin\Release\WildernessCallouts.net.pdb
+C:\Users\USER\RiderProjects\WildernessCallouts\WildernessCallouts\obj\Release\WildernessCallouts.net.dll
+C:\Users\USER\RiderProjects\WildernessCallouts\WildernessCallouts\obj\Release\WildernessCallouts.net.pdb
