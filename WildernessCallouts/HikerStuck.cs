@@ -8,7 +8,7 @@ using CitizenFX.Core.Native;
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Hiker Stuck", "BGHDDevelopment", "0.0.1", Probability.High)]
+    [CalloutProperties("Hiker Stuck", "BGHDDevelopment", "0.0.2", Probability.High)]
     public class HikerStuck : Callout
     {
         private Ped vic;
@@ -44,7 +44,7 @@ namespace WildernessCallouts
             int x = random.Next(1, 100 + 1);
             if(x <= 40)
             { 
-                vic.Task.Wait(1000);
+                vic.Task.Wait(1000); //wait
                 DrawSubtitle("~r~[" + firstname + "] ~s~Please grab me and get me out of here!", 5000);
 
             }
@@ -55,8 +55,8 @@ namespace WildernessCallouts
             }
             else
             {
-                vic.Task.Wait(1000); //wait
-                DrawSubtitle("~r~[" + firstname + "] ~s~Please grab me and get me out of here!", 5000);
+                vic.Weapons.Give(WeaponHash.Pistol, 100, true, true);
+                DrawSubtitle("~r~[" + firstname + "] ~s~DIE!", 5000);
             }
 
         }

@@ -7,7 +7,7 @@ using CitizenFX.Core.Native;
 
 namespace WildernessCallouts
 {
-    [CalloutProperties("Hiker Attacked", "BGHDDevelopment", "0.0.1", Probability.Medium)]
+    [CalloutProperties("Hiker Attacked", "BGHDDevelopment", "0.0.2", Probability.Medium)]
     public class PossibleAttack : Callout
     {
         private Ped vic, suspect;
@@ -30,7 +30,7 @@ namespace WildernessCallouts
             }
             ShortName = "Hiker Attacked";
             CalloutDescription = "A hiker is being attacked by an unknown suspect.";
-            ResponseCode = 2;
+            ResponseCode = 3;
             StartDistance = 200f;
         }
         public async override void OnStart(Ped player)

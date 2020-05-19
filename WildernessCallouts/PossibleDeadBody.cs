@@ -7,7 +7,7 @@ using CitizenFX.Core.Native;
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Possible Dead Body", "BGHDDevelopment", "0.0.1", Probability.Medium)]
+    [CalloutProperties("Dead Body Found", "BGHDDevelopment", "0.0.2", Probability.Medium)]
     public class PossibleDeadBody : Callout
     {
         Ped vic;
@@ -28,8 +28,8 @@ namespace WildernessCallouts
             {
                 InitBase(new Vector3(2042.01f, 5378.45f, 172.677f));
             }
-            ShortName = "Possible Death Body";
-            CalloutDescription = "Possible dead body found on trail.";
+            ShortName = "Dead Body Found";
+            CalloutDescription = "A dead body has been found on a trail.";
             ResponseCode = 2;
             StartDistance = 200f;
         }
