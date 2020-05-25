@@ -9,7 +9,7 @@ using CitizenFX.Core.Native;
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Cult Hostage Situation", "BGHDDevelopment", "0.0.2", Probability.Low)]
+    [CalloutProperties("Cult Hostage Situation", "BGHDDevelopment", "0.0.3", Probability.Low)]
     public class CultHostage : Callout
     {
         Ped suspect1, suspect2, suspect3, suspect4, suspect5, suspect6, suspect7, suspect8, suspect9, suspect10;
@@ -26,6 +26,7 @@ namespace WildernessCallouts
         }
         public async override void OnStart(Ped player)
         {
+            base.OnStart(player);
             suspect1.AttachBlip();
             suspect2.AttachBlip();
             suspect3.AttachBlip();

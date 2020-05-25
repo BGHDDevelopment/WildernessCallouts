@@ -7,7 +7,7 @@ using CitizenFX.Core.Native;
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Dead Body Found", "BGHDDevelopment", "0.0.2", Probability.Medium)]
+    [CalloutProperties("Dead Body Found", "BGHDDevelopment", "0.0.3", Probability.Medium)]
     public class PossibleDeadBody : Callout
     {
         Ped vic;
@@ -43,6 +43,7 @@ namespace WildernessCallouts
         }
         public async override void OnStart(Ped player)
         {
+            base.OnStart(player);
             vic.AttachBlip();
         }
         private void Notify(string message)

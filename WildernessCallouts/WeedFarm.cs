@@ -9,7 +9,7 @@ using CitizenFX.Core.Native;
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Possible Weed Farm", "BGHDDevelopment", "0.0.2", Probability.Low)]
+    [CalloutProperties("Possible Weed Farm", "BGHDDevelopment", "0.0.3", Probability.Low)]
     public class WeedFarm : Callout
     {
         private Ped suspect1, suspect2, suspect3, suspect4;
@@ -24,6 +24,7 @@ namespace WildernessCallouts
         }
         public async override void OnStart(Ped player)
         {
+            base.OnStart(player);
             suspect1.AttachBlip();
             suspect2.AttachBlip();
             suspect3.AttachBlip();

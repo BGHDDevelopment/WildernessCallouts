@@ -7,7 +7,7 @@ using CitizenFX.Core.Native;
 
 namespace WildernessCallouts
 {
-    [CalloutProperties("Hiker Attacked", "BGHDDevelopment", "0.0.2", Probability.Medium)]
+    [CalloutProperties("Hiker Attacked", "BGHDDevelopment", "0.0.3", Probability.Medium)]
     public class PossibleAttack : Callout
     {
         private Ped vic, suspect;
@@ -35,6 +35,7 @@ namespace WildernessCallouts
         }
         public async override void OnStart(Ped player)
         {
+            base.OnStart(player);
             vic.AttachBlip();
             dynamic data1 = await GetPedData(vic.NetworkId);
             string firstname = data1.Firstname;
