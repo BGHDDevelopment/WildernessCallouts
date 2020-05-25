@@ -37,6 +37,7 @@ namespace WildernessCallouts
         {
             base.OnStart(player);
             vic.AttachBlip();
+            suspect.AttachBlip();
             dynamic data1 = await GetPedData(vic.NetworkId);
             string firstname = data1.Firstname;
             dynamic data2 = await GetPedData(suspect.NetworkId);
