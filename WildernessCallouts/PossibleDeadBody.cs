@@ -7,7 +7,7 @@ using CitizenFX.Core.Native;
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Dead Body Found", "BGHDDevelopment", "0.0.3", Probability.Medium)]
+    [CalloutProperties("Dead Body Found", "BGHDDevelopment", "0.0.4", Probability.Medium)]
     public class PossibleDeadBody : Callout
     {
         Ped vic;

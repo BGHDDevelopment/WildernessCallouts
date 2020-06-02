@@ -9,7 +9,7 @@ using CitizenFX.Core.Native;
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Possible Weed Farm", "BGHDDevelopment", "0.0.3", Probability.Low)]
+    [CalloutProperties("Possible Weed Farm", "BGHDDevelopment", "0.0.4", Probability.Low)]
     public class WeedFarm : Callout
     {
         private Ped suspect1, suspect2, suspect3, suspect4;

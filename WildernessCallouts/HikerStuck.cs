@@ -8,7 +8,7 @@ using CitizenFX.Core.Native;
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Hiker Stuck", "BGHDDevelopment", "0.0.3", Probability.High)]
+    [CalloutProperties("Hiker Stuck", "BGHDDevelopment", "0.0.4", Probability.High)]
     public class HikerStuck : Callout
     {
         private Ped vic;

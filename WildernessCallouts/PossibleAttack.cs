@@ -7,7 +7,7 @@ using CitizenFX.Core.Native;
 
 namespace WildernessCallouts
 {
-    [CalloutProperties("Hiker Attacked", "BGHDDevelopment", "0.0.3", Probability.Medium)]
+    [CalloutProperties("Hiker Attacked", "BGHDDevelopment", "0.0.4", Probability.Medium)]
     public class PossibleAttack : Callout
     {
         private Ped vic, suspect;
@@ -50,7 +50,7 @@ namespace WildernessCallouts
                 DrawSubtitle("~r~[" + firstname + "] ~s~Please help me!", 5000);
                 suspect.Task.FightAgainst(vic);
                 suspect.Weapons.Give(WeaponHash.Nightstick, 1000, true, true);
-                DrawSubtitle("~r~[" + firstname2 + "] ~s~Let me get your money!", 5000);
+                DrawSubtitle("~r~[" + firstname2 + "] ~s~Let me have your money!", 5000);
             }
             else if (x > 40 && x <= 65)
             {
@@ -75,7 +75,7 @@ namespace WildernessCallouts
             vic = await SpawnPed(GetRandomPed(), Location);
             suspect = await SpawnPed(GetRandomPed(), Location);
             dynamic data = new ExpandoObject();
-            data.alcoholLevel = 0.02;
+            data.alcoholLevel = 0.05;
             SetPedData(vic.NetworkId,data);
             suspect.AlwaysKeepTask = true;
             suspect.BlockPermanentEvents = true;
