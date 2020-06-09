@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Dynamic;
 using System.Threading.Tasks;
-using CalloutAPI;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using FivePD.API;
 
 namespace WildernessCallouts
 {
-    [CalloutProperties("Hiker Attacked", "BGHDDevelopment", "0.0.4", Probability.Medium)]
+    [CalloutProperties("Hiker Attacked", "BGHDDevelopment", "0.0.5", Probability.Medium)]
     public class PossibleAttack : Callout
     {
         private Ped vic, suspect;

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CalloutAPI;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using FivePD.API;
 
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Dead Body Found", "BGHDDevelopment", "0.0.4", Probability.Medium)]
+    [CalloutProperties("Dead Body Found", "BGHDDevelopment", "0.0.5", Probability.Medium)]
     public class PossibleDeadBody : Callout
     {
         Ped vic;

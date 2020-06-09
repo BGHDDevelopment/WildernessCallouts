@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Dynamic;
 using System.Threading.Tasks;
-using CalloutAPI;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using FivePD.API;
 
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Hiker Stuck", "BGHDDevelopment", "0.0.4", Probability.High)]
+    [CalloutProperties("Hiker Stuck", "BGHDDevelopment", "0.0.5", Probability.High)]
     public class HikerStuck : Callout
     {
         private Ped vic;

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Threading.Tasks;
-using CalloutAPI;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using FivePD.API;
 
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Cult Hostage Situation", "BGHDDevelopment", "0.0.4", Probability.Low)]
+    [CalloutProperties("Cult Hostage Situation", "BGHDDevelopment", "0.0.5", Probability.Low)]
     public class CultHostage : Callout
     {
         Ped suspect1, suspect2, suspect3, suspect4, suspect5, suspect6, suspect7, suspect8, suspect9, suspect10;
