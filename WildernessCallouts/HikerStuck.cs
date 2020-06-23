@@ -8,7 +8,7 @@ using FivePD.API;
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Hiker Stuck", "BGHDDevelopment", "0.0.5", Probability.High)]
+    [CalloutProperties("Hiker Stuck", "BGHDDevelopment", "0.0.5")]
     public class HikerStuck : Callout
     {
         private Ped vic;
@@ -19,26 +19,27 @@ namespace WildernessCallouts
             int x = random.Next(1, 100 + 1);
             if(x <= 40)
             { 
-                InitBase(new Vector3(-765.125f, 4342.06f, 146.31f));
+                InitInfo(new Vector3(-765.125f, 4342.06f, 146.31f));
             }
             else if(x > 40 && x <= 65)
             {
-                InitBase(new Vector3(-789.051f, 4546.31f, 114.618f));
+                InitInfo(new Vector3(-789.051f, 4546.31f, 114.618f));
             }
             else
             {
-                InitBase(new Vector3(-765.125f, 4342.06f, 146.31f)); //default
+                InitInfo(new Vector3(-765.125f, 4342.06f, 146.31f)); //default
             }
             ShortName = "Hiker Stuck";
             CalloutDescription = "A hiker is stuck and needs help.";
             ResponseCode = 2;
             StartDistance = 200f;
+            UpdateData();
         }
 
         public async override void OnStart(Ped player)
         {
             base.OnStart(player);
-            dynamic data1 = await GetPedData(vic.NetworkId);
+            dynamic data1 = await Utilities.GetPedData(vic.NetworkId);
             string firstname = data1.Firstname;
             vic.AttachBlip();
             Random random = new Random();
@@ -62,13 +63,13 @@ namespace WildernessCallouts
 
         }
 
-        public async override Task Init()
+        public async override Task OnAccept()
         {
-            OnAccept();
+            InitBlip();
             vic = await SpawnPed(GetRandomPed(), Location);
             dynamic data = new ExpandoObject();
             data.alcoholLevel = 0.07;
-            SetPedData(vic.NetworkId,data);
+            Utilities.SetPedData(vic.NetworkId,data);
             vic.AlwaysKeepTask = true;
             vic.BlockPermanentEvents = true;
         }

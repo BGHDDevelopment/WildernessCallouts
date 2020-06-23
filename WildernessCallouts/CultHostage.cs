@@ -9,7 +9,7 @@ using FivePD.API;
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Cult Hostage Situation", "BGHDDevelopment", "0.0.5", Probability.Low)]
+    [CalloutProperties("Cult Hostage Situation", "BGHDDevelopment", "0.0.5")]
     public class CultHostage : Callout
     {
         Ped suspect1, suspect2, suspect3, suspect4, suspect5, suspect6, suspect7, suspect8, suspect9, suspect10;
@@ -18,11 +18,12 @@ namespace WildernessCallouts
         List<object> items = new List<object>();
         public CultHostage()
         {
-            InitBase(new Vector3(-1114.12f, 4923.71f, 217.968f));
+            InitInfo(new Vector3(-1114.12f, 4923.71f, 217.968f));
             ShortName = "Cult Holding Hostages";
             CalloutDescription = "A cult is holding 4 people hostage.";
             ResponseCode = 3;
             StartDistance = 200f;
+            UpdateData();
         }
         public async override void OnStart(Ped player)
         {
@@ -69,20 +70,20 @@ namespace WildernessCallouts
             hostage2.Task.ReactAndFlee(suspect5);
             hostage3.Task.ReactAndFlee(suspect4);
             hostage4.Task.ReactAndFlee(suspect3);
-            dynamic data1 = await GetPedData(suspect1.NetworkId);
+            dynamic data1 = await Utilities.GetPedData(suspect1.NetworkId);
             string firstname = data1.Firstname;
             API.Wait(6000);
             DrawSubtitle("~r~[" + firstname + "] ~s~GET OUT OF HERE PIGS!", 5000);
-            dynamic data2 = await GetPedData(suspect2.NetworkId);
+            dynamic data2 = await Utilities.GetPedData(suspect2.NetworkId);
             string firstname2 = data2.Firstname;
             API.Wait(6000);
             DrawSubtitle("~r~[" + firstname2 + "] ~s~ATTACK!", 5000);
             API.Wait(6000);
             DrawSubtitle("~r~[" + firstname + "] ~s~LEAVE US ALONE!", 5000);
         }
-        public async override Task Init()
+        public async override Task OnAccept()
         {
-            OnAccept();
+            InitBlip();
             suspect1 = await SpawnPed(GetRandomPed(), Location + 2);
             suspect2 = await SpawnPed(GetRandomPed(), Location + 3);
             suspect3 = await SpawnPed(GetRandomPed(), Location + 5);
@@ -97,7 +98,7 @@ namespace WildernessCallouts
             hostage2 = await SpawnPed(GetRandomPed(), Location + 1);
             hostage3 = await SpawnPed(GetRandomPed(), Location + 2);
             hostage4 = await SpawnPed(GetRandomPed(), Location + 3);
-            dynamic playerData = GetPlayerData();
+            dynamic playerData = Utilities.GetPlayerData();
             string displayName = playerData.DisplayName;
             Notify("~r~[WildernessCallouts] ~y~Officer ~b~" + displayName + ",~y~ the suspects are heavily armed and have 4 hostages!");
             suspect1.AlwaysKeepTask = true;
@@ -137,16 +138,16 @@ namespace WildernessCallouts
             };
             items.Add(badItem);
             data.items = items;
-            SetPedData(suspect1.NetworkId,data);
-            SetPedData(suspect2.NetworkId,data);
-            SetPedData(suspect3.NetworkId,data);
-            SetPedData(suspect4.NetworkId,data);
-            SetPedData(suspect5.NetworkId,data);
-            SetPedData(suspect6.NetworkId,data);
-            SetPedData(suspect7.NetworkId,data);
-            SetPedData(suspect8.NetworkId,data);
-            SetPedData(suspect9.NetworkId,data);
-            SetPedData(suspect10.NetworkId,data);
+            Utilities.SetPedData(suspect1.NetworkId,data);
+            Utilities.SetPedData(suspect2.NetworkId,data);
+            Utilities.SetPedData(suspect3.NetworkId,data);
+            Utilities.SetPedData(suspect4.NetworkId,data);
+            Utilities.SetPedData(suspect5.NetworkId,data);
+            Utilities.SetPedData(suspect6.NetworkId,data);
+            Utilities.SetPedData(suspect7.NetworkId,data);
+            Utilities.SetPedData(suspect8.NetworkId,data);
+            Utilities.SetPedData(suspect9.NetworkId,data);
+            Utilities.SetPedData(suspect10.NetworkId,data);
         }
         private void Notify(string message)
         {

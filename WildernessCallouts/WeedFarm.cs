@@ -9,18 +9,19 @@ using FivePD.API;
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Possible Weed Farm", "BGHDDevelopment", "0.0.5", Probability.Low)]
+    [CalloutProperties("Possible Weed Farm", "BGHDDevelopment", "0.0.5")]
     public class WeedFarm : Callout
     {
         private Ped suspect1, suspect2, suspect3, suspect4;
         List<object> items = new List<object>();
         public WeedFarm()
         {
-            InitBase(new Vector3(2209.9f, 5613.07f, 53.8743f));
+            InitInfo(new Vector3(2209.9f, 5613.07f, 53.8743f));
             ShortName = "Weed Farm Found";
             CalloutDescription = "A weed farm has been found.";
             ResponseCode = 2;
             StartDistance = 200f;
+            UpdateData();
         }
         public async override void OnStart(Ped player)
         {
@@ -33,13 +34,13 @@ namespace WildernessCallouts
             suspect2.Weapons.Give(WeaponHash.Revolver, 130, true, true);
             suspect3.Weapons.Give(WeaponHash.Firework, 130, true, true);
             suspect4.Weapons.Give(WeaponHash.Musket, 130, true, true);
-            dynamic data1 = await GetPedData(suspect1.NetworkId);
+            dynamic data1 = await Utilities.GetPedData(suspect1.NetworkId);
             string firstname = data1.Firstname;
-            dynamic data2 = await GetPedData(suspect2.NetworkId);
+            dynamic data2 = await Utilities.GetPedData(suspect2.NetworkId);
             string firstname2 = data2.Firstname;
-            dynamic data3 = await GetPedData(suspect3.NetworkId);
+            dynamic data3 = await Utilities.GetPedData(suspect3.NetworkId);
             string firstname3 = data3.Firstname;
-            dynamic data4 = await GetPedData(suspect4.NetworkId);
+            dynamic data4 = await Utilities.GetPedData(suspect4.NetworkId);
             string firstname4 = data4.Firstname;
             Random random = new Random();
             int x = random.Next(1, 100 + 1);
@@ -71,9 +72,9 @@ namespace WildernessCallouts
                 DrawSubtitle("~r~[" + firstname3 + "] ~s~No run!", 5000);
             }
         }
-        public async override Task Init()
+        public async override Task OnAccept()
         {
-            OnAccept();
+            InitBlip();
             suspect1 = await SpawnPed(GetRandomPed(), Location);
             suspect2 = await SpawnPed(GetRandomPed(), Location);
             suspect3 = await SpawnPed(GetRandomPed(), Location);
@@ -87,22 +88,22 @@ namespace WildernessCallouts
             data.alcoholLevel = 0.10;
             data.drugsUsed = new bool[] {false,false,true};
             data.items = items;
-            SetPedData(suspect1.NetworkId,data);
+            Utilities.SetPedData(suspect1.NetworkId,data);
             dynamic data2 = new ExpandoObject();
             data2.alcoholLevel = 0.10;
             data2.drugsUsed = new bool[] {false,false,true};
             data2.items = items;
-            SetPedData(suspect2.NetworkId,data2);
+            Utilities.SetPedData(suspect2.NetworkId,data2);
             dynamic data3 = new ExpandoObject();
             data3.alcoholLevel = 0.10;
             data3.drugsUsed = new bool[] {false,false,true};
             data3.items = items;
-            SetPedData(suspect3.NetworkId,data3);
+            Utilities.SetPedData(suspect3.NetworkId,data3);
             dynamic data4 = new ExpandoObject();
             data4.alcoholLevel = 0.10;
             data4.drugsUsed = new bool[] {false,false,true};
             data4.items = items;
-            SetPedData(suspect4.NetworkId,data4);
+            Utilities.SetPedData(suspect4.NetworkId,data4);
             suspect1.AlwaysKeepTask = true;
             suspect1.BlockPermanentEvents = true;
             suspect2.AlwaysKeepTask = true;

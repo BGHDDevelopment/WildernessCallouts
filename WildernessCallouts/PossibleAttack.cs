@@ -7,7 +7,7 @@ using FivePD.API;
 
 namespace WildernessCallouts
 {
-    [CalloutProperties("Hiker Attacked", "BGHDDevelopment", "0.0.5", Probability.Medium)]
+    [CalloutProperties("Hiker Attacked", "BGHDDevelopment", "0.0.5")]
     public class PossibleAttack : Callout
     {
         private Ped vic, suspect;
@@ -18,15 +18,15 @@ namespace WildernessCallouts
             int x = random.Next(1, 100 + 1);
             if(x <= 40)
             { 
-                InitBase(new Vector3(-589.331f, 5067.92f, 135.294f));
+                InitInfo(new Vector3(-589.331f, 5067.92f, 135.294f));
             }
             else if(x > 40 && x <= 65)
             {
-                InitBase(new Vector3(-571.749f, 4920.47f, 169.622f));
+                InitInfo(new Vector3(-571.749f, 4920.47f, 169.622f));
             }
             else
             {
-                InitBase(new Vector3(-1022.15f, 4715.98f, 240.977f)); //default
+                InitInfo(new Vector3(-1022.15f, 4715.98f, 240.977f)); //default
             }
             ShortName = "Hiker Attacked";
             CalloutDescription = "A hiker is being attacked by an unknown suspect.";
@@ -38,9 +38,9 @@ namespace WildernessCallouts
             base.OnStart(player);
             vic.AttachBlip();
             suspect.AttachBlip();
-            dynamic data1 = await GetPedData(vic.NetworkId);
+            dynamic data1 = await Utilities.GetPedData(vic.NetworkId);
             string firstname = data1.Firstname;
-            dynamic data2 = await GetPedData(suspect.NetworkId);
+            dynamic data2 = await Utilities.GetPedData(suspect.NetworkId);
             string firstname2 = data2.Firstname;
             Random random = new Random();
             int x = random.Next(1, 100 + 1);
@@ -69,14 +69,14 @@ namespace WildernessCallouts
                 DrawSubtitle("~r~[" + firstname2 + "] ~s~Time to die!", 5000);
             }
         }
-        public async override Task Init()
+        public async override Task OnAccept()
         {
-            OnAccept();
+            InitBlip();
             vic = await SpawnPed(GetRandomPed(), Location);
             suspect = await SpawnPed(GetRandomPed(), Location);
             dynamic data = new ExpandoObject();
             data.alcoholLevel = 0.05;
-            SetPedData(vic.NetworkId,data);
+            Utilities.SetPedData(vic.NetworkId,data);
             suspect.AlwaysKeepTask = true;
             suspect.BlockPermanentEvents = true;
             vic.AlwaysKeepTask = true;
