@@ -72,6 +72,7 @@ namespace WildernessCallouts
         public async override Task OnAccept()
         {
             InitBlip();
+            UpdateData();
             vic = await SpawnPed(GetRandomPed(), Location);
             suspect = await SpawnPed(GetRandomPed(), Location);
             dynamic data = new ExpandoObject();

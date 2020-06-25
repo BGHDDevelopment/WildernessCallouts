@@ -21,7 +21,6 @@ namespace WildernessCallouts
             CalloutDescription = "A weed farm has been found.";
             ResponseCode = 2;
             StartDistance = 200f;
-            UpdateData();
         }
         public async override void OnStart(Ped player)
         {
@@ -75,6 +74,7 @@ namespace WildernessCallouts
         public async override Task OnAccept()
         {
             InitBlip();
+            UpdateData();
             suspect1 = await SpawnPed(GetRandomPed(), Location);
             suspect2 = await SpawnPed(GetRandomPed(), Location);
             suspect3 = await SpawnPed(GetRandomPed(), Location);

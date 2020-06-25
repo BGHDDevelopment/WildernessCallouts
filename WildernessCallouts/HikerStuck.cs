@@ -33,7 +33,6 @@ namespace WildernessCallouts
             CalloutDescription = "A hiker is stuck and needs help.";
             ResponseCode = 2;
             StartDistance = 200f;
-            UpdateData();
         }
 
         public async override void OnStart(Ped player)
@@ -66,6 +65,7 @@ namespace WildernessCallouts
         public async override Task OnAccept()
         {
             InitBlip();
+            UpdateData();
             vic = await SpawnPed(GetRandomPed(), Location);
             dynamic data = new ExpandoObject();
             data.alcoholLevel = 0.07;

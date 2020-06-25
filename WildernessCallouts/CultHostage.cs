@@ -23,7 +23,6 @@ namespace WildernessCallouts
             CalloutDescription = "A cult is holding 4 people hostage.";
             ResponseCode = 3;
             StartDistance = 200f;
-            UpdateData();
         }
         public async override void OnStart(Ped player)
         {
@@ -84,6 +83,7 @@ namespace WildernessCallouts
         public async override Task OnAccept()
         {
             InitBlip();
+            UpdateData();
             suspect1 = await SpawnPed(GetRandomPed(), Location + 2);
             suspect2 = await SpawnPed(GetRandomPed(), Location + 3);
             suspect3 = await SpawnPed(GetRandomPed(), Location + 5);

@@ -32,11 +32,11 @@ namespace WildernessCallouts
             CalloutDescription = "A dead body has been found on a trail.";
             ResponseCode = 2;
             StartDistance = 200f;
-            UpdateData();
         }
         public async override Task OnAccept()
         {
             InitBlip();
+            UpdateData();
             vic = await SpawnPed(GetRandomPed(), Location);
             vic.Kill();
             vic.AlwaysKeepTask = true;
