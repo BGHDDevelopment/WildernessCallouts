@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using FivePD.API;
+using FivePD.API.Utils;
 
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Possible Weed Farm", "BGHDDevelopment", "0.0.5")]
+    [CalloutProperties("Possible Weed Farm", "BGHDDevelopment", "0.0.6")]
     public class WeedFarm : Callout
     {
         private Ped suspect1, suspect2, suspect3, suspect4;
-        List<object> items = new List<object>();
         public WeedFarm()
         {
             InitInfo(new Vector3(2209.9f, 5613.07f, 53.8743f));
@@ -33,14 +33,14 @@ namespace WildernessCallouts
             suspect2.Weapons.Give(WeaponHash.Revolver, 130, true, true);
             suspect3.Weapons.Give(WeaponHash.Firework, 130, true, true);
             suspect4.Weapons.Give(WeaponHash.Musket, 130, true, true);
-            dynamic data1 = await Utilities.GetPedData(suspect1.NetworkId);
-            string firstname = data1.Firstname;
-            dynamic data2 = await Utilities.GetPedData(suspect2.NetworkId);
-            string firstname2 = data2.Firstname;
-            dynamic data3 = await Utilities.GetPedData(suspect3.NetworkId);
-            string firstname3 = data3.Firstname;
-            dynamic data4 = await Utilities.GetPedData(suspect4.NetworkId);
-            string firstname4 = data4.Firstname;
+            PedData data1 = await Utilities.GetPedData(suspect1.NetworkId);
+            string firstname = data1.FirstName;
+            PedData data2 = await Utilities.GetPedData(suspect2.NetworkId);
+            string firstname2 = data2.FirstName;
+            PedData data3 = await Utilities.GetPedData(suspect3.NetworkId);
+            string firstname3 = data3.FirstName;
+            PedData data4 = await Utilities.GetPedData(suspect4.NetworkId);
+            string firstname4 = data4.FirstName;
             Random random = new Random();
             int x = random.Next(1, 100 + 1);
             if (x <= 40)
@@ -75,34 +75,31 @@ namespace WildernessCallouts
         {
             InitBlip();
             UpdateData();
-            suspect1 = await SpawnPed(GetRandomPed(), Location);
-            suspect2 = await SpawnPed(GetRandomPed(), Location);
-            suspect3 = await SpawnPed(GetRandomPed(), Location);
-            suspect4 = await SpawnPed(GetRandomPed(), Location);
-            object Weed = new {
+            suspect1 = await SpawnPed(RandomUtils.GetRandomPed(), Location);
+            suspect2 = await SpawnPed(RandomUtils.GetRandomPed(), Location);
+            suspect3 = await SpawnPed(RandomUtils.GetRandomPed(), Location);
+            suspect4 = await SpawnPed(RandomUtils.GetRandomPed(), Location);
+            List<Item> items = new List<Item>();
+            Item Weed = new Item {
                 Name = "Bag of Weed",
                 IsIllegal = true
             };
             items.Add(Weed);
-            dynamic data = new ExpandoObject();
-            data.alcoholLevel = 0.10;
-            data.drugsUsed = new bool[] {false,false,true};
-            data.items = items;
+            PedData data = new PedData();
+            data.BloodAlcoholLevel = 0.10;
+            data.Items = items;
             Utilities.SetPedData(suspect1.NetworkId,data);
-            dynamic data2 = new ExpandoObject();
-            data2.alcoholLevel = 0.10;
-            data2.drugsUsed = new bool[] {false,false,true};
-            data2.items = items;
+            PedData data2 = new PedData();
+            data2.BloodAlcoholLevel = 0.10;
+            data2.Items = items;
             Utilities.SetPedData(suspect2.NetworkId,data2);
-            dynamic data3 = new ExpandoObject();
-            data3.alcoholLevel = 0.10;
-            data3.drugsUsed = new bool[] {false,false,true};
-            data3.items = items;
+            PedData data3 = new PedData();
+            data3.BloodAlcoholLevel = 0.10;
+            data3.Items = items;
             Utilities.SetPedData(suspect3.NetworkId,data3);
-            dynamic data4 = new ExpandoObject();
-            data4.alcoholLevel = 0.10;
-            data4.drugsUsed = new bool[] {false,false,true};
-            data4.items = items;
+            PedData data4 = new PedData();
+            data4.BloodAlcoholLevel = 0.10;
+            data4.Items = items;
             Utilities.SetPedData(suspect4.NetworkId,data4);
             suspect1.AlwaysKeepTask = true;
             suspect1.BlockPermanentEvents = true;
@@ -112,12 +109,6 @@ namespace WildernessCallouts
             suspect3.BlockPermanentEvents = true;
             suspect4.AlwaysKeepTask = true;
             suspect4.BlockPermanentEvents = true;
-        }
-        private void Notify(string message)
-        {
-            API.BeginTextCommandThefeedPost("STRING");
-            API.AddTextComponentSubstringPlayerName(message);
-            API.EndTextCommandThefeedPostTicker(false, true);
         }
         private void DrawSubtitle(string message, int duration)
         {

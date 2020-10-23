@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using FivePD.API;
+using FivePD.API.Utils;
 
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Cult Hostage Situation", "BGHDDevelopment", "0.0.5")]
+    [CalloutProperties("Cult Hostage Situation", "BGHDDevelopment", "0.0.6")]
     public class CultHostage : Callout
     {
         Ped suspect1, suspect2, suspect3, suspect4, suspect5, suspect6, suspect7, suspect8, suspect9, suspect10;
         Ped hostage1, hostage2, hostage3, hostage4;
         private string[] badItemList = { "Beer Bottle", "Open Beer Can", "Wine Bottle", "Random Pills", "Needles", "SMG", "Sniper", "Rifle", "Pistol", "Knife", "Broken Bottle", "Musket"};
-        List<object> items = new List<object>();
         public CultHostage()
         {
             InitInfo(new Vector3(-1114.12f, 4923.71f, 217.968f));
@@ -69,8 +69,9 @@ namespace WildernessCallouts
             hostage2.Task.ReactAndFlee(suspect5);
             hostage3.Task.ReactAndFlee(suspect4);
             hostage4.Task.ReactAndFlee(suspect3);
-            dynamic data1 = await Utilities.GetPedData(suspect1.NetworkId);
-            string firstname = data1.Firstname;
+            PedData data1 = await Utilities.GetPedData(suspect1.NetworkId);
+
+            string firstname = data1.FirstName;
             API.Wait(6000);
             DrawSubtitle("~r~[" + firstname + "] ~s~GET OUT OF HERE PIGS!", 5000);
             dynamic data2 = await Utilities.GetPedData(suspect2.NetworkId);
@@ -84,21 +85,21 @@ namespace WildernessCallouts
         {
             InitBlip();
             UpdateData();
-            suspect1 = await SpawnPed(GetRandomPed(), Location + 2);
-            suspect2 = await SpawnPed(GetRandomPed(), Location + 3);
-            suspect3 = await SpawnPed(GetRandomPed(), Location + 5);
-            suspect4 = await SpawnPed(GetRandomPed(), Location + 4);
-            suspect5 = await SpawnPed(GetRandomPed(), Location + 1);
-            suspect6 = await SpawnPed(GetRandomPed(), Location);
-            suspect7 = await SpawnPed(GetRandomPed(), Location + 6);
-            suspect8 = await SpawnPed(GetRandomPed(), Location + 7);
-            suspect9 = await SpawnPed(GetRandomPed(), Location + 8);
-            suspect10 = await SpawnPed(GetRandomPed(), Location + 5);
-            hostage1 = await SpawnPed(GetRandomPed(), Location);
-            hostage2 = await SpawnPed(GetRandomPed(), Location + 1);
-            hostage3 = await SpawnPed(GetRandomPed(), Location + 2);
-            hostage4 = await SpawnPed(GetRandomPed(), Location + 3);
-            dynamic playerData = Utilities.GetPlayerData();
+            suspect1 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 2);
+            suspect2 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 3);
+            suspect3 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 5);
+            suspect4 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 4);
+            suspect5 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 1);
+            suspect6 = await SpawnPed(RandomUtils.GetRandomPed(), Location);
+            suspect7 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 6);
+            suspect8 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 7);
+            suspect9 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 8);
+            suspect10 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 5);
+            hostage1 = await SpawnPed(RandomUtils.GetRandomPed(), Location);
+            hostage2 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 1);
+            hostage3 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 2);
+            hostage4 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 3);
+            PlayerData playerData = Utilities.GetPlayerData();
             string displayName = playerData.DisplayName;
             Notify("~r~[WildernessCallouts] ~y~Officer ~b~" + displayName + ",~y~ the suspects are heavily armed and have 4 hostages!");
             suspect1.AlwaysKeepTask = true;
@@ -129,15 +130,16 @@ namespace WildernessCallouts
             hostage3.BlockPermanentEvents = true;
             hostage4.AlwaysKeepTask = true;
             hostage4.BlockPermanentEvents = true;
-            dynamic data = new ExpandoObject();
+            PedData data = new PedData();
             Random random2 = new Random();
+            List<Item> items = new List<Item>();
             string name = badItemList[random2.Next(badItemList.Length)];
-            object badItem = new {
+            Item badItem = new Item {
                 Name = name,
                 IsIllegal = true
             };
             items.Add(badItem);
-            data.items = items;
+            data.Items = items;
             Utilities.SetPedData(suspect1.NetworkId,data);
             Utilities.SetPedData(suspect2.NetworkId,data);
             Utilities.SetPedData(suspect3.NetworkId,data);

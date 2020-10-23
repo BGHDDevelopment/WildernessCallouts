@@ -4,11 +4,12 @@ using System.Threading.Tasks;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using FivePD.API;
+using FivePD.API.Utils;
 
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Hiker Stuck", "BGHDDevelopment", "0.0.5")]
+    [CalloutProperties("Hiker Stuck", "BGHDDevelopment", "0.0.6")]
     public class HikerStuck : Callout
     {
         private Ped vic;
@@ -38,8 +39,8 @@ namespace WildernessCallouts
         public async override void OnStart(Ped player)
         {
             base.OnStart(player);
-            dynamic data1 = await Utilities.GetPedData(vic.NetworkId);
-            string firstname = data1.Firstname;
+            PedData data1 = await Utilities.GetPedData(vic.NetworkId);
+            string firstname = data1.FirstName;
             vic.AttachBlip();
             Random random = new Random();
             int x = random.Next(1, 100 + 1);
@@ -66,20 +67,14 @@ namespace WildernessCallouts
         {
             InitBlip();
             UpdateData();
-            vic = await SpawnPed(GetRandomPed(), Location);
-            dynamic data = new ExpandoObject();
-            data.alcoholLevel = 0.07;
-            Utilities.SetPedData(vic.NetworkId,data);
+            vic = await SpawnPed(RandomUtils.GetRandomPed(), Location);
+            PedData data = new PedData();
+            data.BloodAlcoholLevel = 0.07;
+            Utilities.SetPedData(vic.NetworkId, data);
             vic.AlwaysKeepTask = true;
             vic.BlockPermanentEvents = true;
         }
-
-        private void Notify(string message)
-        {
-            API.BeginTextCommandThefeedPost("STRING");
-            API.AddTextComponentSubstringPlayerName(message);
-            API.EndTextCommandThefeedPostTicker(false, true);
-        }
+        
         private void DrawSubtitle(string message, int duration)
         {
             API.BeginTextCommandPrint("STRING");

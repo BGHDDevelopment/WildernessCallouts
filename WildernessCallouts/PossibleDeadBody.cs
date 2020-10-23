@@ -3,11 +3,12 @@ using System.Threading.Tasks;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using FivePD.API;
+using FivePD.API.Utils;
 
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Dead Body Found", "BGHDDevelopment", "0.0.5")]
+    [CalloutProperties("Dead Body Found", "BGHDDevelopment", "0.0.6")]
     public class PossibleDeadBody : Callout
     {
         Ped vic;
@@ -37,7 +38,7 @@ namespace WildernessCallouts
         {
             InitBlip();
             UpdateData();
-            vic = await SpawnPed(GetRandomPed(), Location);
+            vic = await SpawnPed(RandomUtils.GetRandomPed(), Location);
             vic.Kill();
             vic.AlwaysKeepTask = true;
             vic.BlockPermanentEvents = true;
@@ -46,18 +47,6 @@ namespace WildernessCallouts
         {
             base.OnStart(player);
             vic.AttachBlip();
-        }
-        private void Notify(string message)
-        {
-            API.BeginTextCommandThefeedPost("STRING");
-            API.AddTextComponentSubstringPlayerName(message);
-            API.EndTextCommandThefeedPostTicker(false, true);
-        }
-        private void DrawSubtitle(string message, int duration)
-        {
-            API.BeginTextCommandPrint("STRING");
-            API.AddTextComponentSubstringPlayerName(message);
-            API.EndTextCommandPrint(duration, false);
         }
     }
 }
