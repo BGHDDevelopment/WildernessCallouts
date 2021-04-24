@@ -9,7 +9,7 @@ using FivePD.API.Utils;
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Hiker Stuck", "BGHDDevelopment", "0.0.6")]
+    [CalloutProperties("Hiker Stuck", "BGHDDevelopment", "1.0.0")]
     public class HikerStuck : Callout
     {
         private Ped vic;
@@ -39,6 +39,12 @@ namespace WildernessCallouts
         public async override void OnStart(Ped player)
         {
             base.OnStart(player);
+            vic = await SpawnPed(RandomUtils.GetRandomPed(), Location);
+            PedData data = new PedData();
+            data.BloodAlcoholLevel = 0.07;
+            Utilities.SetPedData(vic.NetworkId, data);
+            vic.AlwaysKeepTask = true;
+            vic.BlockPermanentEvents = true;
             PedData data1 = await Utilities.GetPedData(vic.NetworkId);
             string firstname = data1.FirstName;
             vic.AttachBlip();
@@ -67,12 +73,6 @@ namespace WildernessCallouts
         {
             InitBlip();
             UpdateData();
-            vic = await SpawnPed(RandomUtils.GetRandomPed(), Location);
-            PedData data = new PedData();
-            data.BloodAlcoholLevel = 0.07;
-            Utilities.SetPedData(vic.NetworkId, data);
-            vic.AlwaysKeepTask = true;
-            vic.BlockPermanentEvents = true;
         }
         
         private void DrawSubtitle(string message, int duration)

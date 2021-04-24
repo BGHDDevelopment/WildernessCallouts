@@ -7,3 +7,14 @@ C:\Users\USER\RiderProjects\WildernessCallouts\WildernessCallouts\bin\Release\Wi
 C:\Users\USER\RiderProjects\WildernessCallouts\WildernessCallouts\obj\Release\WildernessCallouts.net.dll
 C:\Users\USER\RiderProjects\WildernessCallouts\WildernessCallouts\obj\Release\WildernessCallouts.net.pdb
 C:\Users\USER\RiderProjects\WildernessCallouts\WildernessCallouts\bin\Release\FivePD.net.dll
+C:\Users\steph\Desktop\Source\WildernessCallouts\WildernessCallouts\bin\Release\WildernessCallouts.net.dll
+C:\Users\steph\Desktop\Source\WildernessCallouts\WildernessCallouts\bin\Release\WildernessCallouts.net.pdb
+C:\Users\steph\Desktop\Source\WildernessCallouts\WildernessCallouts\bin\Release\CitizenFX.Core.Client.dll
+C:\Users\steph\Desktop\Source\WildernessCallouts\WildernessCallouts\bin\Release\FivePD.net.dll
+C:\Users\steph\Desktop\Source\WildernessCallouts\WildernessCallouts\bin\Release\CitizenFX.Core.Client.xml
+C:\Users\steph\Desktop\Source\WildernessCallouts\WildernessCallouts\bin\Release\FivePD.net.xml
+C:\Users\steph\Desktop\Source\WildernessCallouts\WildernessCallouts\obj\Release\WildernessCallouts.csprojAssemblyReference.cache
+C:\Users\steph\Desktop\Source\WildernessCallouts\WildernessCallouts\obj\Release\WildernessCallouts.csproj.CoreCompileInputs.cache
+C:\Users\steph\Desktop\Source\WildernessCallouts\WildernessCallouts\obj\Release\WildernessCallouts.csproj.CopyComplete
+C:\Users\steph\Desktop\Source\WildernessCallouts\WildernessCallouts\obj\Release\WildernessCallouts.net.dll
+C:\Users\steph\Desktop\Source\WildernessCallouts\WildernessCallouts\obj\Release\WildernessCallouts.net.pdb

@@ -10,7 +10,7 @@ using FivePD.API.Utils;
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Cult Hostage Situation", "BGHDDevelopment", "0.0.6")]
+    [CalloutProperties("Cult Hostage Situation", "BGHDDevelopment", "1.0.0")]
     public class CultHostage : Callout
     {
         Ped suspect1, suspect2, suspect3, suspect4, suspect5, suspect6, suspect7, suspect8, suspect9, suspect10;
@@ -27,65 +27,7 @@ namespace WildernessCallouts
         public async override void OnStart(Ped player)
         {
             base.OnStart(player);
-            suspect1.AttachBlip();
-            suspect2.AttachBlip();
-            suspect3.AttachBlip();
-            suspect4.AttachBlip();
-            suspect5.AttachBlip();
-            suspect6.AttachBlip();
-            suspect7.AttachBlip();
-            suspect8.AttachBlip();
-            suspect9.AttachBlip();
-            suspect10.AttachBlip();
-            hostage1.AttachBlip();
-            hostage2.AttachBlip();
-            hostage3.AttachBlip();
-            hostage4.AttachBlip();
-            suspect1.Weapons.Give(WeaponHash.SMG, 130, true, true);
-            suspect2.Weapons.Give(WeaponHash.Revolver, 130, true, true);
-            suspect3.Weapons.Give(WeaponHash.Firework, 130, true, true);
-            suspect4.Weapons.Give(WeaponHash.Musket, 130, true, true);
-            suspect5.Weapons.Give(WeaponHash.AssaultRifle, 130, true, true);
-            suspect7.Weapons.Give(WeaponHash.CarbineRifle, 130, true, true);
-            suspect7.Weapons.Give(WeaponHash.MarksmanRifle, 130, true, true);
-            suspect8.Weapons.Give(WeaponHash.SniperRifle, 130, true, true);
-            suspect9.Weapons.Give(WeaponHash.HeavySniper, 130, true, true);
-            suspect10.Weapons.Give(WeaponHash.Knife, 130, true, true);
-            suspect1.Task.FightAgainst(player);
-            suspect2.Task.FightAgainst(player);
-            suspect3.Task.FightAgainst(player);
-            suspect4.Task.FightAgainst(player);
-            suspect5.Task.FightAgainst(player);
-            suspect6.Task.FightAgainst(player);
-            suspect7.Task.FightAgainst(player);
-            suspect8.Task.FightAgainst(player);
-            suspect9.Task.FightAgainst(player);
-            suspect10.Task.FightAgainst(player);
-            hostage1.Task.HandsUp(1000000);
-            hostage2.Task.HandsUp(1000000);
-            hostage3.Task.HandsUp(1000000);
-            hostage4.Task.HandsUp(1000000);
-            hostage1.Task.ReactAndFlee(suspect1);
-            hostage2.Task.ReactAndFlee(suspect5);
-            hostage3.Task.ReactAndFlee(suspect4);
-            hostage4.Task.ReactAndFlee(suspect3);
-            PedData data1 = await Utilities.GetPedData(suspect1.NetworkId);
-
-            string firstname = data1.FirstName;
-            API.Wait(6000);
-            DrawSubtitle("~r~[" + firstname + "] ~s~GET OUT OF HERE PIGS!", 5000);
-            dynamic data2 = await Utilities.GetPedData(suspect2.NetworkId);
-            string firstname2 = data2.Firstname;
-            API.Wait(6000);
-            DrawSubtitle("~r~[" + firstname2 + "] ~s~ATTACK!", 5000);
-            API.Wait(6000);
-            DrawSubtitle("~r~[" + firstname + "] ~s~LEAVE US ALONE!", 5000);
-        }
-        public async override Task OnAccept()
-        {
-            InitBlip();
-            UpdateData();
-            suspect1 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 2);
+                        suspect1 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 2);
             suspect2 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 3);
             suspect3 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 5);
             suspect4 = await SpawnPed(RandomUtils.GetRandomPed(), Location + 4);
@@ -150,6 +92,64 @@ namespace WildernessCallouts
             Utilities.SetPedData(suspect8.NetworkId,data);
             Utilities.SetPedData(suspect9.NetworkId,data);
             Utilities.SetPedData(suspect10.NetworkId,data);
+            suspect1.AttachBlip();
+            suspect2.AttachBlip();
+            suspect3.AttachBlip();
+            suspect4.AttachBlip();
+            suspect5.AttachBlip();
+            suspect6.AttachBlip();
+            suspect7.AttachBlip();
+            suspect8.AttachBlip();
+            suspect9.AttachBlip();
+            suspect10.AttachBlip();
+            hostage1.AttachBlip();
+            hostage2.AttachBlip();
+            hostage3.AttachBlip();
+            hostage4.AttachBlip();
+            suspect1.Weapons.Give(WeaponHash.SMG, 130, true, true);
+            suspect2.Weapons.Give(WeaponHash.Revolver, 130, true, true);
+            suspect3.Weapons.Give(WeaponHash.Firework, 130, true, true);
+            suspect4.Weapons.Give(WeaponHash.Musket, 130, true, true);
+            suspect5.Weapons.Give(WeaponHash.AssaultRifle, 130, true, true);
+            suspect7.Weapons.Give(WeaponHash.CarbineRifle, 130, true, true);
+            suspect7.Weapons.Give(WeaponHash.MarksmanRifle, 130, true, true);
+            suspect8.Weapons.Give(WeaponHash.SniperRifle, 130, true, true);
+            suspect9.Weapons.Give(WeaponHash.HeavySniper, 130, true, true);
+            suspect10.Weapons.Give(WeaponHash.Knife, 130, true, true);
+            suspect1.Task.FightAgainst(player);
+            suspect2.Task.FightAgainst(player);
+            suspect3.Task.FightAgainst(player);
+            suspect4.Task.FightAgainst(player);
+            suspect5.Task.FightAgainst(player);
+            suspect6.Task.FightAgainst(player);
+            suspect7.Task.FightAgainst(player);
+            suspect8.Task.FightAgainst(player);
+            suspect9.Task.FightAgainst(player);
+            suspect10.Task.FightAgainst(player);
+            hostage1.Task.HandsUp(1000000);
+            hostage2.Task.HandsUp(1000000);
+            hostage3.Task.HandsUp(1000000);
+            hostage4.Task.HandsUp(1000000);
+            hostage1.Task.ReactAndFlee(suspect1);
+            hostage2.Task.ReactAndFlee(suspect5);
+            hostage3.Task.ReactAndFlee(suspect4);
+            hostage4.Task.ReactAndFlee(suspect3);
+            PedData data1 = await Utilities.GetPedData(suspect1.NetworkId);
+
+            string firstname = data1.FirstName;
+            API.Wait(6000);
+            DrawSubtitle("~r~[" + firstname + "] ~s~GET OUT OF HERE PIGS!", 5000);
+            dynamic data2 = await Utilities.GetPedData(suspect2.NetworkId);
+            string firstname2 = data2.Firstname;
+            API.Wait(6000);
+            DrawSubtitle("~r~[" + firstname2 + "] ~s~ATTACK!", 5000);
+            API.Wait(6000);
+            DrawSubtitle("~r~[" + firstname + "] ~s~LEAVE US ALONE!", 5000);
+        }
+        public async override Task OnAccept()
+        {
+            InitBlip();
+            UpdateData();
         }
         private void Notify(string message)
         {

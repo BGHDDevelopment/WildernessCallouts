@@ -8,7 +8,7 @@ using FivePD.API.Utils;
 namespace WildernessCallouts
 {
     
-    [CalloutProperties("Dead Body Found", "BGHDDevelopment", "0.0.6")]
+    [CalloutProperties("Dead Body Found", "BGHDDevelopment", "1.0.0")]
     public class PossibleDeadBody : Callout
     {
         Ped vic;
@@ -38,14 +38,14 @@ namespace WildernessCallouts
         {
             InitBlip();
             UpdateData();
-            vic = await SpawnPed(RandomUtils.GetRandomPed(), Location);
-            vic.Kill();
-            vic.AlwaysKeepTask = true;
-            vic.BlockPermanentEvents = true;
         }
         public async override void OnStart(Ped player)
         {
             base.OnStart(player);
+            vic = await SpawnPed(RandomUtils.GetRandomPed(), Location);
+            vic.Kill();
+            vic.AlwaysKeepTask = true;
+            vic.BlockPermanentEvents = true;
             vic.AttachBlip();
         }
     }
